@@ -10,7 +10,6 @@ use Symfony\Component\HttpClient\HttpClient;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Action;
 
-
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
@@ -19,7 +18,10 @@ class HomeController extends AbstractController
     {
         if (isset($_POST["nom"]) && isset($_POST["montant"])) {
 
-            $entreprise = 'NFLX';
+            $entreprise = $_POST["nom"];
+            $montant = $_POST["montant"];
+            dump('https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols='.$entreprise);
+            dump($_POST["nom"]);
 
         $response = $client->request(
             'GET', 
@@ -37,20 +39,20 @@ class HomeController extends AbstractController
                 $console = $content;
                 if (is_array($console))
                 dump($console);
-                dump('20'.date("y-M-d h:m:s"));
+                dump('20'.date("y-M-d"));
                }
                write_to_console($content);
         }
 
-            $name = $content["displayName"];
+            $name = $content["shortName"];
             $value = $content["regularMarketPrice"];
-            $amount = 50;
-            $date = date("Y-m-d H:i:s");
+            $amount = $montant;
+            $date = date("Y-m-d");
 
 
 
 
-            /*$entityManager = $doctrine->getManager();
+            $entityManager = $doctrine->getManager();
 
             $action = new Action();
                 $action->setName($name);
@@ -59,7 +61,7 @@ class HomeController extends AbstractController
                 $action->setAmount($amount);
 
                 $entityManager->persist($action);
-                $entityManager->flush();*/
+                $entityManager->flush();
 
             return $this->render('home/index.html.twig', [
                 'controller_name' => 'HomeController',
