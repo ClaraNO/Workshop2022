@@ -8,26 +8,38 @@
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
-    <div>
-    <label for="solde"> Solde : </label>
-    <form action="/" method="POST">
-        <div>
-            <select name="nom" id="nom">
-                <option value="NFLX">NETFLIX</option>
-                <option value="AAPL">APPLE</option>
-                <option value="GOOGL">GOOGLE</option>
-                <option value="TTE">TOTAL</option><br/><br/>
-            </select>
+    <div class="flex flex-row h-screen w-screen bg-white">
+        <div class="flex flex-col h-scren w-1/2 items-center pt-5">
+            <div class="flex flex-col h-2/6 w-1/3 py-6 px-5 bg-white rounded-xl drop-shadow-lg">
+                <form action="/" method="POST">
+                    <div>
+                        <label for="nom">Entreprise: </label>
+                        <select name="nom" id="nom" class="rounded-sm drop-shadow-md">
+                            <option value="NFLX">NETFLIX</option>
+                            <option value="AAPL">APPLE</option>
+                            <option value="GOOGL">GOOGLE</option>
+                            <option value="TTE">TOTAL</option><br/><br/>
+                        </select>
+                    </div>
+                    <div class="mt-5">
+                        <label for="montant"> Montant: </label><input type="text" name="montant" id="montant" placeholder="Entrez votre montant" class="px-1 py-1 rounded-lg drop-shadow-md">
+                    </div>
+                    <div class="mt-8">
+                        <input type="submit" name="btOK" value="Valider" class="rounded-lg py-2 px-3 bg-green-500 text-white font-bold drop-shadow-md">
+                    </div>
+                </form>
+            </div>
         </div>
-        <div>
-            <label for="montant"> Montant : </label><input type="text" name="montant" id="montant" placeholder="Entrez votre montant" /><br/><br/>
-        </div>
-        <input type="submit" name="btOK" value="Valider">
-    </form>
 
-        <div class="">
-            <p id="city" class="text-2xl font-extrabold mb-8">Cours de {{ displayName }}</p>
-            <p id="temp" class="text-xl font-bold mb-3">{{ regularMarketPrice }}</p>
+        <div class="flex flex-col h-scren w-1/2 items-center">
+            <div class="flex flex-col h-3/5 w-2/3 mt-16 items-center rounded-xl bg-white drop-shadow-md">
+                <div class="flex flex-row w-full mt-5 mb-12">
+                    <div class="flex w-1/2 justify-center text-xl font-bold"><h5> Entreprise </h5></div>
+                    <div class="flex w-1/2 justify-center text-xl font-bold"><h5> Montant </h5></div>
+                </div>
+                {{ display }}
+            </div>
         </div>
     </div>
+
 {% endblock %}
