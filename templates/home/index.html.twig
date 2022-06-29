@@ -34,10 +34,16 @@
         <div class="flex flex-col h-scren w-1/2 items-center">
             <div class="flex flex-col h-3/5 w-2/3 mt-16 items-center rounded-xl bg-white drop-shadow-md">
                 <div class="flex flex-row w-full mt-5 mb-12">
-                    <div class="flex w-1/2 justify-center text-xl font-bold"><h5> Entreprise </h5></div>
-                    <div class="flex w-1/2 justify-center text-xl font-bold"><h5> Montant </h5></div>
+                    <div class="flex w-1/3 justify-center text-xl font-bold"><h5> Entreprise </h5></div>
+                    <div class="flex w-1/3 justify-center text-xl font-bold"><h5> Cours </h5></div>
+                    <div class="flex w-1/3 justify-center text-xl font-bold"><h5> Montant </h5></div>
                 </div>
-                {{ display }}
+                <div class="flex flex-row w-full mt-6 mb-12">
+                    <div class="flex w-1/3 justify-center text-xl font-bold"><h5> {{ displayName }} </h5></div>
+                    <div class="flex w-1/3 justify-center text-xl font-bold"><h5> {{ regularMarketPrice}} </h5></div>
+                    <div class="flex w-1/3 justify-center text-xl font-bold"><h5> {{ amount }} </h5></div>
+                </div>
+
             </div>
         </div>
     </div>

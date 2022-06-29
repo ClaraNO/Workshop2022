@@ -35,7 +35,7 @@ class HomeController extends AbstractController
             $result = $response->toArray();
             $content = $result["quoteResponse"]["result"][0];
 
-            $name = $content["shortName"];
+             $name = $content["shortName"];
             $value = $content["regularMarketPrice"];
             $amount = $montant;
             $date = date("Y-m-d");
@@ -54,21 +54,11 @@ class HomeController extends AbstractController
                 $entityManager->persist($action);
                 $entityManager->flush();
 
-            $count = "SELECT count(id) FROM action";
-            $db_count = mysql_query($count);
-
-            for ($i = 1; $i <= $db_count; $i++) {
-                $action = $doctrine->getRepository(Action::class)->find($id);
-                $nom = $action->getName();
-                $amount = $action->getAmount();
-
-                $div = "<div class=\"flex flex-row w-full mt-5 mb-12\">
-                <div class=\"flex w-1/2 justify-center text-xl font-bold\"><h5>".$nom."</h5></div>
-                <div class=\"flex w-1/2 justify-center text-xl font-bold\"><h5>".$amount."</h5></div>
-                </div>";
-            }
-
             return $this->render('home/index.html.twig', [
+                'controller_name' => 'HomeController',
+                'displayName' => $name,
+                'regularMarketPrice' => $value,
+                'amount' => $amount
             ]);
 
         }
@@ -77,7 +67,9 @@ class HomeController extends AbstractController
 
             return $this->render('home/index.html.twig', [
                 'controller_name' => 'HomeController',
-                'display' => $div;
+                'displayName' => '',
+                'regularMarketPrice' => '',
+                'amount' => ''
             ]);
 
         } 
